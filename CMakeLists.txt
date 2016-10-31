@@ -24,9 +24,18 @@ file(
 	"./scanf/*.c"
 )
 
+file(
+	GLOB public_headers
+	"./*.h"
+)
+
 add_definitions(-DHAVE_CONFIG_H)
 add_definitions(-D_LIB)
 add_definitions(-D_WIN64) #usually building for x64
 
 add_library(mpir ${mpir_SRC})
+
+#install public facing headers and lib
+install (TARGETS mpir DESTINATION ${PROJECT_SOURCE_DIR}/lib)
+install (FILES ${public_headers} DESTINATION ${PROJECT_SOURCE_DIR}/include)
 
