@@ -31,7 +31,9 @@ file(
 
 add_definitions(-DHAVE_CONFIG_H)
 add_definitions(-D_LIB)
-add_definitions(-D_WIN64) #usually building for x64
+if(WIN32)
+	add_definitions(-D_WIN64) #usually building for x64
+endif()
 
 add_library(mpir ${mpir_SRC})
 
